@@ -1,0 +1,43 @@
+version: "3"
+services:
+  chrome-puncher:
+    image: selenium/standalone-chrome:119.0-chromedriver-119.0
+    container_name: pro-puncher-chrome
+    privileged: true
+    shm_size: 4gb
+    # ports:
+    #   - "4444:4444"  # monitor panel
+    #   - "7900:7900"  # to check the process with the browser
+    # environment:
+    #   - SE_VNC_NO_PASSWORD=1  # the password setting for the viewer
+    # stdin_open: true
+    # tty: true
+
+  main-puncher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pro-puncher-main
+    privileged: true
+    shm_size: 4gb
+    working_dir: /root/app/
+    stdin_open: true
+    tty: true
+    environment:
+      - ACUD=${ACUD}
+      - ACCOUNT=${ACCOUNT}
+      - PASSWORD=${PASSWORD}
+      - PUNCH_MINUTE=${PUNCH_MINUTE}
+      - PUNCH_HOUR=${PUNCH_HOUR}
+      - PUNCH_DAY_OF_WEEK=${PUNCH_DAY_OF_WEEK}
+      - TIMEZONE=${TIMEZONE}
+    command: celery -A main worker -B --loglevel=info
+    depends_on:
+      - redis
+      - chrome-puncher
+
+  redis:
+    image: redis:6-alpine
+    container_name: pro-puncher-db
+      
+
