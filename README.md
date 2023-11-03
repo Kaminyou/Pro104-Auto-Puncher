@@ -1,5 +1,5 @@
-# Pro104-Auto-Puncher
-Automatically punch in and out for 104企業大師 system
+# Pro-Auto-Puncher
+Automatically punch in and out for 104 pro
 
 ## Get started
 1. Please create `.env` and provide environment variables in it. For `PUNCH_MINUTE`, `PUNCH_HOUR`, `PUNCH_DAY_OF_WEEK`, and `TIMEZONE`, please refer to [`celery`](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html) for the setting.
