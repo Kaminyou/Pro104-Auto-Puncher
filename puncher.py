@@ -1,3 +1,4 @@
+import random
 import time
 
 from selenium import webdriver
@@ -11,7 +12,11 @@ def punch(
     account: str,
     password: str,
     wait_second: int = 10,
+    randomness_start: int = 60,
+    randomness_end: int = 1200,
 ) -> bool:
+    t = random.randint(randomness_start, randomness_end)
+    time.sleep(t)
     browser = webdriver.Remote(
         command_executor='http://chrome-puncher:4444/wd/hub',
         options=webdriver.ChromeOptions()
