@@ -31,6 +31,7 @@ services:
       - PUNCH_HOUR=${PUNCH_HOUR}
       - PUNCH_DAY_OF_WEEK=${PUNCH_DAY_OF_WEEK}
       - TIMEZONE=${TIMEZONE}
+      - TZ=${TIMEZONE}
     command: celery -A main worker -B --loglevel=info
     depends_on:
       - redis
