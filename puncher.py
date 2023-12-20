@@ -43,11 +43,19 @@ def punch(
 
         browser.get('https://pro.104.com.tw/psc2')
 
-        wait = WebDriverWait(browser, wait_second)
-        punch_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '(//span[text()="Clock in/out"])[2]')))
-        # punch_btn = browser.find_element(By.XPATH, "//span[text()='Clock in/out']")
-        # print(punch_btn.is_displayed())
-        punch_btn.click()
+        time.sleep(wait_second)
+        count = 0
+        success = False
+        while count < 5 and not success:
+            try:
+                elements = browser.find_elements(By.XPATH, '//span[text()="Clock in/out"]')
+                elements[2].click()
+                success = True
+                print('Punch successfully')
+            except Exception as e:
+                print(f'Punch failed due to {e}, try times: {count}')
+                count += 1
+                time.sleep(wait_second)
         time.sleep(wait_second)
 
     except Exception as e:
