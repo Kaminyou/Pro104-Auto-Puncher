@@ -8,7 +8,8 @@ services:
     # ports:
     #   - "4444:4444"  # monitor panel
     #   - "7900:7900"  # to check the process with the browser
-    # environment:
+    environment:
+      - TZ=${TIMEZONE}
     #   - SE_VNC_NO_PASSWORD=1  # the password setting for the viewer
     # stdin_open: true
     # tty: true
