@@ -28,10 +28,10 @@ def punch(
         browser.refresh()
         time.sleep(wait_second)
 
-        account_input = browser.find_element(By.XPATH,'//input[@placeholder="請輸入您的電子信箱"]')
+        account_input = browser.find_element(By.XPATH,'//input[@placeholder="輸入您的電子信箱"]')
         account_input.send_keys(account)
 
-        password_input = browser.find_element(By.XPATH,'//input[@placeholder="請輸入密碼，區分大小寫"]')
+        password_input = browser.find_element(By.XPATH,'//input[@placeholder="輸入密碼，區分大小寫"]')
         password_input.send_keys(password)
 
         button = browser.find_element(By.XPATH, '//button[contains(text(), "立即登入")]')
@@ -46,7 +46,7 @@ def punch(
         time.sleep(wait_second)
         count = 0
         success = False
-        while count < 5 and not success:
+        while count < 10 and not success:
             try:
                 elements = browser.find_elements(By.XPATH, '//span[text()="Clock in/out"]')
                 elements[2].click()
